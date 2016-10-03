@@ -24,8 +24,12 @@ twitter_username: MrJoshuaP
 github_username: mrjoshuap
 timezone: America/New_York
 
+# Enable disqus comments
 disqus:
   shortname: mrjoshuap
+
+# Enable google analytics
+google_analytics: UA-85143801-1
 
 # Build settings
 markdown: kramdown
