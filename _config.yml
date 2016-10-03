@@ -24,7 +24,13 @@ twitter_username: MrJoshuaP
 github_username: mrjoshuap
 timezone: America/New_York
 
+disqus:
+  shortname: mrjoshuap
+
 # Build settings
 markdown: kramdown
 theme: minima
 
+gems:
+  - jekyll-sitemap
+  - minima
