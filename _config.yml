@@ -16,7 +16,7 @@
 title: MrJoshuaP's Adventures
 email: the@mrjoshuap.com
 description: > # this means to ignore newlines until "baseurl:"
-  Just a random technologist's blog about Open Source Technologies peppered with
+  Just a random technologist's ideas, thoughts and opinions peppered with
   a dash of enterprise grade awesomeness and salted with bad humor.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://mrjoshuap.com" # the base hostname & protocol for your site
