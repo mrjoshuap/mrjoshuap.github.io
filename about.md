@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About MrJoshuaP
+title: About
 permalink: /about/
 ---
 

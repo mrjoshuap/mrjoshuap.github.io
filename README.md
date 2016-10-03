@@ -1,2 +1,3 @@
 # mrjoshuap.github.io
-MrJoshuaP's 
+
+MrJoshuaP's blog and homepage.
