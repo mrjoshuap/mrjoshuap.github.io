@@ -1,5 +1,7 @@
 ---
 layout: page
-title: About
+title: About MrJoshuaP
 permalink: /about/
 ---
+
+[![IPv6 Certification Badge for mrjoshuap](//ipv6.he.net/certification/create_badge.php?pass_name=mrjoshuap&badge=1)](https://ipv6.he.net/certification/scoresheet.php?pass_name=mrjoshuap)
