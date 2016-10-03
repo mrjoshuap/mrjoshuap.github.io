@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Coming soon!"
-date:   2016-10-02 21:08:24 -0400
+date:   2016-10-02 21:08:24 -0500
 categories: news
 ---
 
@@ -10,8 +10,8 @@ I have to say.  Well, maybe not, but you've obviously found this page and MIGHT
 be interested in at least skimming some of my random thoughts.
 
 I'll be working on getting this up to par, in the meantime, feel free to check
-out my Red Hat Page, where I have some of my presentation and support materials
-stored for your enjoyment.
+out my [Red Hat Page](https://people.redhat.com/jpreston), where I have some of
+my presentation and support materials stored for your enjoyment and reference.
 
 Thanks!
 
