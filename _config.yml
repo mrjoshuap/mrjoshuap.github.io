@@ -26,6 +26,9 @@ linkedin_username: mrjoshuap
 xboxlive_username: MrJoshuaP
 timezone: America/New_York
 
+exclude:
+  - _drafts/satellite-6-release-automation.graffle
+
 # Enable disqus comments
 disqus:
   shortname: mrjoshuap
