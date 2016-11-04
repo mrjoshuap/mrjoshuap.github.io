@@ -111,6 +111,12 @@ Examples:
     # cut-release.sh -o "Default_Organization" -p -P -f "Library" -t "Development"
 {% endhighlight %}
 
+Stay Tuned
+----------
+
+For my next trick, we'll look at taking the above trick and automating it with
+Jenkins.
+
 References
 ----------
 * [cut-release.sh script](/assets/satellite-6-release-automation/cut-release.sh)
