@@ -58,6 +58,7 @@ while getopts "df:ho:pPt:" opt; do
   case $opt in
     d)
       DEBUG="true"
+      HAMMER_OPTS="-d -v"
       ;;
     f)
       FROM_LIFECYCLE="$OPTARG"
@@ -108,7 +109,7 @@ exit 1
 
 TODAY=$(date +%Y-%m-%d)
 
-CONTENT_VIEWS=$(hammer --output=csv content-view list \
+CONTENT_VIEWS=$(hammer ${HAMMER_OPTS} --output=csv content-view list \
                 --organization="${ORG}" | tail -n +2)
 
 O_IFS=$IFS
@@ -125,7 +126,7 @@ for CV in ${CONTENT_VIEWS}; do
 
   if [ "${PUBLISH_VERSION}" = "true" ]; then
     echo "Publishing a new version of content view [${CV_NAME}] with id ${CV_ID}"
-    hammer content-view publish \
+    hammer ${HAMMER_OPTS} content-view publish \
       --organization="${ORG}" \
       --id=${CV_ID} \
       --description="Publishing new version on ${TODAY} - see ${BUILD_URL}"
@@ -136,7 +137,7 @@ for CV in ${CONTENT_VIEWS}; do
     FROM_LIFECYCLE=${FROM_LIFECYCLE:?FROM_LIFECYCLE is required!}
     TO_LIFECYCLE=${TO_LIFECYCLE:?TO_LIFECYCLE is required!}
 
-    CV_VERSION=$(hammer --output=csv content-view version list \
+    CV_VERSION=$(hammer ${HAMMER_OPTS} --output=csv content-view version list \
                 --organization="${ORG}" \
                 --environment="${FROM_LIFECYCLE}" \
                 --content-view-id=${CV_ID} \
@@ -146,7 +147,7 @@ for CV in ${CONTENT_VIEWS}; do
     CV_VERSION_NAME=$(echo ${CV_VERSION} | cut -d , -f 2)
 
     echo "Promoting [${CV_VERSION_NAME}] with id ${CV_VERSION_ID} from [${FROM_LIFECYCLE}] to [${TO_LIFECYCLE}]"
-    hammer content-view version promote \
+    hammer ${HAMMER_OPTS} content-view version promote \
       --organization="${ORG}" \
       --content-view-id=${CV_ID} \
       --from-lifecycle-environment="${FROM_LIFECYCLE}" \
@@ -154,7 +155,7 @@ for CV in ${CONTENT_VIEWS}; do
       --id=${CV_VERSION_ID}
 
     echo "Installable erratum for [${CV_VERSION_NAME}] content hosts"
-    hammer erratum list \
+    hammer ${HAMMER_OPTS} erratum list \
       --organization="${ORG}" \
       --content-view-id=${CV_ID} \
       --content-view-version-id=${CV_VERSION_ID} \
