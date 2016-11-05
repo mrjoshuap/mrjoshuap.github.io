@@ -114,8 +114,10 @@ Examples:
 Stay Tuned
 ----------
 
-For my next trick, we'll look at taking the above trick and automating it with
-Jenkins.
+For my next trick, we'll look at taking the above and automating it with
+Jenkins -- and the teaser below shows what I'm thinking.
+
+![Satellite 6 Release Automation with Jenkins](/assets/satellite-6-release-automation/satellite-6-release-automation.png)
 
 References
 ----------
