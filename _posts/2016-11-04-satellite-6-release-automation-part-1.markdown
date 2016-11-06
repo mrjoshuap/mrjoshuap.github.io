@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Satellite 6 Release Automation"
+title:  "Satellite 6 Release Automation: Part 1"
 categories: satellite
 ---
 
