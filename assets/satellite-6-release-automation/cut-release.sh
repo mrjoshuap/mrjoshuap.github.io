@@ -21,6 +21,9 @@ Options:
         -P                  Promote content view versions to a lifecycle
                             You must specify the -f and -t options to promote
         -t [lifecycle]      When promoting content views, this is the TO lifecycle
+        -x [number]         Keep num of versions older than the PURGE lifecycle
+
+        -X [lifecycle]      Purge versions older than the one assigned to PURGE lifecycle
 
 Environment Variables:
 
@@ -33,6 +36,8 @@ integration with CI/CD tools such as Jenkins easier.
         PROMOTE_VERSION    true/false
           FROM_LIFECYCLE   "From_Lifecycle"
           TO_LIFECYCLE     "To_Lifecycle"
+        PURGE_VERSIONS     true/false
+          PURGE_LIFECYCLE  "Purge_Lifecycle"
 
 Examples:
 
@@ -54,7 +59,7 @@ Examples:
 USAGE
 }
 
-while getopts "df:ho:pPt:" opt; do
+while getopts "df:ho:pPt:x:X:" opt; do
   case $opt in
     d)
       DEBUG="true"
@@ -79,6 +84,13 @@ while getopts "df:ho:pPt:" opt; do
     t)
       TO_LIFECYCLE="$OPTARG"
       ;;
+    x)
+      PURGE_KEEP_EXTRA=${OPTARG}
+      ;;
+    X)
+      PURGE_VERSIONS="true"
+      PURGE_LIFECYCLE="${OPTARG}"
+      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -94,15 +106,20 @@ DEBUG=${DEBUG:-false}
 ORG=${ORG:?Organization is required!}
 PUBLISH_VERSION=${PUBLISH_VERSION:-false}
 PROMOTE_VERSION=${PROMOTE_VERSION:-false}
+PURGE_VERSIONS=${PURGE_VERSIONS:-false}
+PURGE_KEEP_EXTRA=${PURGE_KEEP_EXTRA:-0}
 
 if [ "$DEBUG" = "true" ]; then
   echo "----"
-  echo "DEBUG            = ${DEBUG}"
-  echo "ORG              = ${ORG}"
-  echo "PUBLISH_VERSION  = ${PUBLISH_VERSION}"
-  echo "PROMOTE_VERSION  = ${PROMOTE_VERSION}"
-  echo "  FROM_LIFECYCLE = ${FROM_LIFECYCLE:-none}"
-  echo "  TO_LIFECYCLE   = ${TO_LIFECYCLE:-none}"
+  echo "DEBUG              = ${DEBUG}"
+  echo "ORG                = ${ORG}"
+  echo "PUBLISH_VERSION    = ${PUBLISH_VERSION}"
+  echo "PROMOTE_VERSION    = ${PROMOTE_VERSION}"
+  echo "  FROM_LIFECYCLE   = ${FROM_LIFECYCLE:-none}"
+  echo "  TO_LIFECYCLE     = ${TO_LIFECYCLE:-none}"
+  echo "PURGE_VERSIONS     = ${PURGE_VERSIONS}"
+  echo "  PURGE_LIFECYCLE  = ${PURGE_LIFECYCLE:-none}"
+  echo "  PURGE_KEEP_EXTRA = ${PURGE_KEEP_EXTRA}"
 fi
 
 TODAY=$(date +%Y-%m-%d)
@@ -158,6 +175,40 @@ for CV in ${CONTENT_VIEWS}; do
       --content-view-id=${CV_ID} \
       --content-view-version-id=${CV_VERSION_ID} \
       --errata-restrict-installable=true
+  fi
+
+  # If we specified the to/from lifecycle environments
+  if [ "${PURGE_VERSIONS}" = "true" ]; then
+    PURGE_LIFECYCLE=${PURGE_LIFECYCLE:?PURGE_LIFECYCLE is required!}
+
+    if [ "${PURGE_KEEP_EXTRA}" -lt "0" ]; then
+      echo "PURGE_KEEP_EXTRA must be a number > 0"
+      exit 1
+    fi
+
+    echo "Purging content view [${CV_NAME}] for versions older than lifecycle [${PURGE_LIFECYCLE}]"
+
+    CV_VERSIONS=$(hammer ${HAMMER_OPTS} --output=csv content-view version list \
+                --organization="${ORG}" \
+                --content-view-id=${CV_ID} \
+                | tail -n +2)
+
+    CV_LIFECYCLE_LINE=$(echo "${CV_VERSIONS}" | grep -n -m 1 ${PURGE_LIFECYCLE} | cut -f 1 -d :)
+
+    CV_PURGE_LINE=$(expr ${CV_LIFECYCLE_LINE} + ${PURGE_KEEP_EXTRA} + 1)
+
+    CV_PURGE_VERSIONS=$(echo "${CV_VERSIONS}" | tail -n +${CV_PURGE_LINE})
+
+    for CV_PURGE_VERSION in ${CV_PURGE_VERSIONS}; do
+      CV_VERSION_ID=$(echo "${CV_PURGE_VERSION}" | cut -d , -f 1)
+      CV_VERSION_NAME=$(echo "${CV_PURGE_VERSION}" | cut -d , -f 2)
+
+      echo "Purging version [${CV_VERSION_NAME}] with id ${CV_VERSION_ID}"
+      hammer ${HAMMER_OPTS} content-view version delete \
+        --organization="${ORG}" \
+        --content-view-id=${CV_ID} \
+        --id=${CV_VERSION_ID}
+    done
   fi
 
 done
