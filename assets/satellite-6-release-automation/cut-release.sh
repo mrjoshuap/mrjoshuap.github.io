@@ -197,7 +197,7 @@ for CV in ${CONTENT_VIEWS}; do
 
     CV_PURGE_LINE=$(expr ${CV_LIFECYCLE_LINE} + ${PURGE_KEEP_EXTRA} + 1)
 
-    CV_PURGE_VERSIONS=$(echo "${CV_VERSIONS}" | tail -n +${CV_PURGE_LINE})
+    CV_PURGE_VERSIONS=$(echo "${CV_VERSIONS}" | tail -n +${CV_PURGE_LINE} | rev)
 
     for CV_PURGE_VERSION in ${CV_PURGE_VERSIONS}; do
       CV_VERSION_ID=$(echo "${CV_PURGE_VERSION}" | cut -d , -f 1)
@@ -205,6 +205,7 @@ for CV in ${CONTENT_VIEWS}; do
 
       echo "Purging version [${CV_VERSION_NAME}] with id ${CV_VERSION_ID}"
       hammer ${HAMMER_OPTS} content-view version delete \
+        --async \
         --organization="${ORG}" \
         --content-view-id=${CV_ID} \
         --id=${CV_VERSION_ID}
