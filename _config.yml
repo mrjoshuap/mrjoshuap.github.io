@@ -38,7 +38,7 @@ google_analytics: UA-85143801-1
 
 # Build settings
 markdown: kramdown
-theme: minima
+#theme: minima
 
 gems:
   - jekyll-sitemap
