@@ -105,8 +105,6 @@ if [ "$DEBUG" = "true" ]; then
   echo "  TO_LIFECYCLE   = ${TO_LIFECYCLE:-none}"
 fi
 
-exit 1
-
 TODAY=$(date +%Y-%m-%d)
 
 CONTENT_VIEWS=$(hammer ${HAMMER_OPTS} --output=csv content-view list \
