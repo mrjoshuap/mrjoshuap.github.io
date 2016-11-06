@@ -64,7 +64,6 @@ configure hammer through the use of the
 I did manage to slap in a usage page for some help:
 
 {% highlight none %}
-$ ./cut-release.sh -h
 cut-release.sh -- simple content view management for Satellite 6
 
 Usage:
@@ -80,6 +79,9 @@ Options:
         -P                  Promote content view versions to a lifecycle
                             You must specify the -f and -t options to promote
         -t [lifecycle]      When promoting content views, this is the TO lifecycle
+        -x [number]         Keep num of versions older than the PURGE lifecycle
+
+        -X [lifecycle]      Purge versions older than the one assigned to PURGE lifecycle
 
 Environment Variables:
 
@@ -92,6 +94,8 @@ integration with CI/CD tools such as Jenkins easier.
         PROMOTE_VERSION    true/false
           FROM_LIFECYCLE   "From_Lifecycle"
           TO_LIFECYCLE     "To_Lifecycle"
+        PURGE_VERSIONS     true/false
+          PURGE_LIFECYCLE  "Purge_Lifecycle"
 
 Examples:
 
