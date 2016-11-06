@@ -42,4 +42,4 @@ markdown: kramdown
 
 gems:
   - jekyll-sitemap
-  - minima
+#  - minima
