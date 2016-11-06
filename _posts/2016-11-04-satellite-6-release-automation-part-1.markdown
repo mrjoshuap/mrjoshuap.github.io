@@ -123,7 +123,7 @@ References
 ----------
 * [cut-release.sh script](/assets/satellite-6-release-automation/cut-release.sh)
 
-* [Red Hat Satellite 5]()
+* [Red Hat Satellite 5](https://access.redhat.com/documentation/en/red-hat-satellite/5.7/?version=5.7)
 * [Spacewalk](https://fedorahosted.org/spacewalk/)
 
 * [Red Hat Satellite 6](https://access.redhat.com/products/red-hat-satellite)
