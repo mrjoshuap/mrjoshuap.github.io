@@ -80,7 +80,6 @@ Options:
                             You must specify the -f and -t options to promote
         -t [lifecycle]      When promoting content views, this is the TO lifecycle
         -x [number]         Keep num of versions older than the PURGE lifecycle
-
         -X [lifecycle]      Purge versions older than the one assigned to PURGE lifecycle
 
 Environment Variables:
