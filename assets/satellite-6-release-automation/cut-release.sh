@@ -196,7 +196,7 @@ for CV in ${CONTENT_VIEWS}; do
 
     CV_PURGE_LINE=$(expr ${CV_LIFECYCLE_LINE} + ${PURGE_KEEP_EXTRA} + 1)
 
-    CV_PURGE_VERSIONS=$(echo "${CV_VERSIONS}" | tail -n +${CV_PURGE_LINE} | rev)
+    CV_PURGE_VERSIONS=$(echo "${CV_VERSIONS}" | tail -n +${CV_PURGE_LINE} | sort -n)
 
     for CV_PURGE_VERSION in ${CV_PURGE_VERSIONS}; do
       CV_VERSION_ID=$(echo "${CV_PURGE_VERSION}" | cut -d , -f 1)
