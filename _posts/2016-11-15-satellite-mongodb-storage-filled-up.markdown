@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Satellite MongoDB Storage Filled Up!"
-categories: satellite mongodb
+categories: satellite troubleshooting
 ---
 
 So, after letting my automated release script cut new releases daily and weekly
