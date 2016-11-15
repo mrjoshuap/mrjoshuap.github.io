@@ -55,6 +55,15 @@ Examples:
 
     # cut-release.sh -o "Default_Organization" -p -P -f "Library" -t "Development"
 
+  To purge all versions of all content views older than the "Production" lifecycle:
+
+    # cut-release.sh -o "Default_Organization" -X "Development"
+
+  To purge all but the latest 3 versions of all content views older than
+  the "Production" lifecycle:
+
+    # cut-release.sh -o "Default_Organization" -X "Development" -x 3
+
 USAGE
 }
 
