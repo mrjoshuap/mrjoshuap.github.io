@@ -37,6 +37,7 @@ integration with CI/CD tools such as Jenkins easier.
           TO_LIFECYCLE     "To_Lifecycle"
         PURGE_VERSIONS     true/false
           PURGE_LIFECYCLE  "Purge_Lifecycle"
+          PURGE_KEEP_EXTRA 0
 
 Examples:
 
