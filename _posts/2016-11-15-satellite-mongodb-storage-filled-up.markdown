@@ -14,6 +14,10 @@ speeding up it's delivery.
 However, it seems I must accelerate that mechanism...  after I repair my crippled
 Satellite server...
 
+Also, I would highly recommend you take a look at the
+[How to manage paused tasks on Red Hat Satellite 6](https://access.redhat.com/solutions/2089951)
+solution first.
+
 Symptoms
 --------
 
@@ -218,6 +222,7 @@ References
 ----------
 * [cut-release.sh script](/assets/satellite-6-release-automation/cut-release.sh)
 
+* [How to manage paused tasks on Red Hat Satellite 6](https://access.redhat.com/solutions/2089951)
 * [Foreman-dev thread: how to clear locked dynflow tasks?](https://groups.google.com/d/msg/foreman-dev/vkM3VhaXEOI/FGR8Pu1viwkJ)
 * [Pulp-list thread: Unstarted tasks?](https://www.redhat.com/archives/pulp-list/2015-May/msg00074.html)
 * [Cancel Pulp tasks script](https://gist.github.com/snobear/16c42b19455ffe3ab83e)
