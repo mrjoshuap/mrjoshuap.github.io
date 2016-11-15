@@ -95,6 +95,7 @@ integration with CI/CD tools such as Jenkins easier.
           TO_LIFECYCLE     "To_Lifecycle"
         PURGE_VERSIONS     true/false
           PURGE_LIFECYCLE  "Purge_Lifecycle"
+          PURGE_KEEP_EXTRA 0
 
 Examples:
 
@@ -112,6 +113,15 @@ Examples:
   immediately promote to the "Development" lifecycle environment:
 
     # cut-release.sh -o "Default_Organization" -p -P -f "Library" -t "Development"
+
+  To purge all versions of all content views older than the "Production" lifecycle:
+
+    # cut-release.sh -o "Default_Organization" -X "Development"
+
+  To purge all but the latest 3 versions of all content views older than
+  the "Production" lifecycle:
+
+    # cut-release.sh -o "Default_Organization" -X "Development" -x 3
 {% endhighlight %}
 
 Stay Tuned
