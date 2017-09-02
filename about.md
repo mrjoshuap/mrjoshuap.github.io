@@ -10,8 +10,8 @@ Who is MrJoshuaP?
 -----------------
 I'm just a technologist that lives in the midwest, you know, the state that is
 round on the ends and hi in the middle?  For fun, I play Call of Duty: Zombies,
-currently agonizing through Black Ops 3.  If you play, look me up on
-[XBox Live](https://account.xbox.com/en-US/Profile?gamerTag={{ site.xboxlive_username }}).
+currently agonizing through Black Ops 3 and Infinite Warfare.  If you play,
+look me up on [MrJoshuaP on XBox Live](https://account.xbox.com/en-US/Profile?gamerTag={{ site.xboxlive_username }}).
 
 After a few years working with technology, primarily with Unix based systems
 from organizations named after large celestrial bodies, I decided to start
