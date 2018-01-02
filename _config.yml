@@ -28,6 +28,9 @@ timezone: America/New_York
 
 exclude:
   - assets/satellite-6-release-automation.graffle
+  - CNAME
+  - Gemfile*
+  - Makefile
   - shell
 
 # Enable disqus comments
