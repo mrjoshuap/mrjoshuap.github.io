@@ -1,4 +1,4 @@
-SITE= .site
+SITE= site
 RM= rm -rf
 
 all : site

@@ -2,7 +2,7 @@
 
 HEAD=`git symbolic-ref --short HEAD`
 SHA=`git rev-parse HEAD`
-SITE=.site
+SITE=site
 
 if [ $# -eq 0 ]; then
 echo "USAGE: $0 <files>" >&2
