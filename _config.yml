@@ -28,6 +28,7 @@ timezone: America/New_York
 
 exclude:
   - assets/satellite-6-release-automation.graffle
+  - shell
 
 # Enable disqus comments
 disqus:
