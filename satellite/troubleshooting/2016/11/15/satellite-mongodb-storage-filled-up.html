@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Satellite MongoDB Storage Filled Up!</title>
+  <meta name="description" content="So, after letting my automated release script cut new releases daily and weekly
+promoting from the Library to Production for about 30 days or so, I found my
+...">
+
+  
+  
+  <link rel="stylesheet" href="http://mrjoshuap.com/css/main.css">
+  <link rel="canonical" href="http://mrjoshuap.com/satellite/troubleshooting/2016/11/15/satellite-mongodb-storage-filled-up.html">
+  <link rel="alternate" type="application/rss+xml" title="MrJoshuaP&#39;s Adventures" href="http://mrjoshuap.com/feed.xml">
+
+  
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" id="st_insights_js" src="http://w.sharethis.com/button/buttons.js?publisher=b26f9987-2d38-40fc-886a-079439a1d2c0"></script>
+  <script type="text/javascript">stLight.options({publisher: "b26f9987-2d38-40fc-886a-079439a1d2c0", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-7979700060767776",
+      enable_page_level_ads: true
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    
+    
+    <a class="site-title" href="/">MrJoshuaP&#39;s Adventures</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <script>
+          (function() {
+            var cx = '007925208529848094199:1leyii2sq4k';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+          })();
+        </script>
+        <gcse:search></gcse:search>
+      </div>
+
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Satellite MongoDB Storage Filled Up!</h1>
+    <p class="post-meta"><time datetime="2016-11-15T00:00:00-05:00" itemprop="datePublished">Nov 15, 2016</time></p>
+    <span class='st_print_large' displayText='Print'></span>
+    <span class='st_email_large' displayText='Email'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_pinterest_large' displayText='Pinterest'></span>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>So, after letting my automated release script cut new releases daily and weekly
+promoting from the Library to Production for about 30 days or so, I found my
+32GB <code class="highlighter-rouge">/var/lib/mongodb</code> partition full – presumably because there was no
+purging of older, unused content view versions.  I had worked up the theory in
+my first post, but didn’t actually test it or really give it any thought to
+speeding up it’s delivery.</p>
+
+<p>However, it seems I must accelerate that mechanism…  after I repair my crippled
+Satellite server…</p>
+
+<p>Also, I would highly recommend you take a look at the
+<a href="https://access.redhat.com/solutions/2089951">How to manage paused tasks on Red Hat Satellite 6</a>
+solution first.</p>
+
+<h2 id="symptoms">Symptoms</h2>
+
+<ul>
+  <li>Publish or promotion tasks of the
+<a href="/assets/satellite-6-release-automation/cut-release.sh">cut-release.sh</a>
+never end, and instead spin apparently doing nothing</li>
+  <li>A number of tasks in Foreman/Satellite that are running for long periods of
+time without change in completion percentage.</li>
+  <li>Pulp has a number of tasks seemingly stuck in <em>Waiting</em> state</li>
+  <li>Repository synchronizations fail or never complete</li>
+</ul>
+
+<h2 id="cleanup-and-restoration">Cleanup and Restoration</h2>
+
+<ul>
+  <li>First, we need to stop Satellite 6, as gracefully as possible:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># katello-service stop</code></pre></figure>
+
+<ul>
+  <li>
+    <p>Now, we need to increase the size of the <code class="highlighter-rouge">/var/lib/mongodb</code> partition, I
+just <em>KNOW</em> you made it a separate volume you can grow!  If not, you’ll need to
+create a new one and perform the appropriate data migration steps to move the
+data to a new, more spacious location.</p>
+  </li>
+  <li>
+    <p>After ensuring <code class="highlighter-rouge">/var/lib/mongodb</code> is remounted, permissions, ownership
+and selinux labels are applied properly, we need to repair it (this might take
+a while):</p>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># sudo -u mongodb mongod --repair --dbpath /var/lib/mongodb</code></pre></figure>
+
+<ul>
+  <li>Let’s start up PostgreSQL:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># systemctl start postgresql</code></pre></figure>
+
+<ul>
+  <li>Now, let’s clean up the Foreman tasks directly in the PostgreSQL database
+(WARNING: you could do this more selectively, following this will purge ALL tasks.
+if you are concerned about audit trails of tasks, this is not your solution!):</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># su -s /bin/bash - postgres
+
+-bash-4.2$ psql
+psql (9.2.15)
+Type "help" for help.
+
+postgres=# \c foreman;
+You are now connected to database "foreman" as user "postgres".
+foreman=# delete from foreman_tasks_tasks;
+DELETE 329
+foreman=# delete from foreman_tasks_locks;
+DELETE 6268
+foreman=# \q
+-bash-4.2$ exit</code></pre></figure>
+
+<ul>
+  <li>Go ahead and stop PostgreSQL:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># systemctl stop postgresql</code></pre></figure>
+
+<ul>
+  <li>Bring Satellite 6 back up:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># katello-service start</code></pre></figure>
+
+<ul>
+  <li>If you haven’t installed <code class="highlighter-rouge">pulp-admin-client</code>, do so now:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># yum -y install pulp-admin-client</code></pre></figure>
+
+<ul>
+  <li>Configure auto-logins for pulp-admin:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># cd ~
+# mkdir .pulp
+# cat \
+  /etc/pki/katello/certs/pulp-client.crt \
+  /etc/pki/katello/private/pulp-client.key \
+  &gt; ~/.pulp/user-cert.pem</code></pre></figure>
+
+<ul>
+  <li>Get the status of Pulp:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># pulp-admin status
++----------------------------------------------------------------------+
+                          Status of the server
++----------------------------------------------------------------------+
+
+Api Version:           2
+Database Connection:
+  Connected: True
+Known Workers:
+  _id:            scheduler@satellite.example.com
+  _ns:            workers
+  Last Heartbeat: 2016-11-15T20:53:10Z
+  _id:            reserved_resource_worker-2@satellite.example.com
+  _ns:            workers
+  Last Heartbeat: 2016-11-15T20:54:15Z
+  _id:            reserved_resource_worker-0@satellite.example.com
+  _ns:            workers
+  Last Heartbeat: 2016-11-15T20:54:16Z
+  _id:            reserved_resource_worker-1@satellite.example.com
+  _ns:            workers
+  Last Heartbeat: 2016-11-15T20:54:16Z
+  _id:            resource_manager@satellite.example.com
+  _ns:            workers
+  Last Heartbeat: 2016-11-15T20:54:16Z
+  _id:            reserved_resource_worker-3@satellite.example.com
+  _ns:            workers
+  Last Heartbeat: 2016-11-15T20:54:16Z
+Messaging Connection:
+  Connected: True
+Versions:
+  Platform Version: 2.8.3.4</code></pre></figure>
+
+<ul>
+  <li>Check if there are any pulp tasks stuck in <em>Waiting</em> state:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># pulp-admin tasks list
++----------------------------------------------------------------------+
+                                 Tasks
++----------------------------------------------------------------------+
+
+Operations:  sync
+Resources:   Default_Organization-JBoss_Enterprise_Application_Platform-JBoss_Enterpr
+             ise_Application_Platform_7_RHEL_7_Server_RPMs_x86_64_7Server
+             (repository)
+State:       Waiting
+Start Time:  Unstarted
+Finish Time: Incomplete
+Task Id:     3274bbba-47f8-4ec4-a9bd-19ad55686411
+
+Operations:  sync
+Resources:   Default_Organization-Red_Hat_Enterprise_Linux_Server-Red_Hat_Satellite_T
+             ools_6_2_for_RHEL_7_Server_RPMs_x86_64 (repository)
+State:       Waiting
+Start Time:  Unstarted
+Finish Time: Incomplete
+Task Id:     93495b75-9bcb-45e2-952d-267c253589de
+
+Operations:  sync
+Resources:   Default_Organization-Ansible_Tower-PostgreSQL_9_4_7Server_-_x86_64
+             (repository)
+State:       Waiting
+Start Time:  Unstarted
+Finish Time: Incomplete
+Task Id:     a1104e9c-336b-437b-a66f-2ff492d62f5e
+
+... &lt;output trimmed&gt;</code></pre></figure>
+
+<ul>
+  <li>If there are tasks in <em>Waiting</em> state, download and run the <code class="highlighter-rouge">cancel-pulp-tasks.sh</code> script:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># wget https://gist.githubusercontent.com/snobear/16c42b19455ffe3ab83e/raw/d7fb397191da31006ca3475b5cbfd79d6c9cce10/cancel-pulp-tasks.sh
+# chmod +x cancel-pulp-tasks.sh
+# ./cancel-pulp-tasks.sh
+Enter task state to kill, e.g. Waiting: Waiting
+
+-- Dumping the full list of pulp server tasks to /tmp/tasks...
+Task cancel is successfully initiated.
+
+Task cancel is successfully initiated.
+
+... &lt;output trimmed&gt;</code></pre></figure>
+
+<ul>
+  <li>Now check to see if any pulp tasks remain:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none">[root@satellite ~]# pulp-admin tasks list
++----------------------------------------------------------------------+
+                                 Tasks
++----------------------------------------------------------------------+
+
+No tasks found</code></pre></figure>
+
+<p>At this point, you should have cleaned up / repaired your Satellite installation
+and should probably go ahead and restart all Satellite services:</p>
+
+<figure class="highlight"><pre><code class="language-none" data-lang="none"># katello-service stop
+# sleep 10
+# katello-service start</code></pre></figure>
+
+<p>You should now be back in business!  Now might be a good time to start cleaning
+up old and unneeded content view versions…</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li>
+    <p><a href="/assets/satellite-6-release-automation/cut-release.sh">cut-release.sh script</a></p>
+  </li>
+  <li><a href="https://access.redhat.com/solutions/2089951">How to manage paused tasks on Red Hat Satellite 6</a></li>
+  <li><a href="https://groups.google.com/d/msg/foreman-dev/vkM3VhaXEOI/FGR8Pu1viwkJ">Foreman-dev thread: how to clear locked dynflow tasks?</a></li>
+  <li><a href="https://www.redhat.com/archives/pulp-list/2015-May/msg00074.html">Pulp-list thread: Unstarted tasks?</a></li>
+  <li>
+    <p><a href="https://gist.github.com/snobear/16c42b19455ffe3ab83e">Cancel Pulp tasks script</a></p>
+  </li>
+  <li><a href="https://access.redhat.com/products/red-hat-satellite">Red Hat Satellite 6</a></li>
+  <li><a href="https://theforeman.org/">The Foreman</a></li>
+  <li><a href="http://www.katello.org/">Katello</a></li>
+  <li><a href="http://pulpproject.org/">Pulp</a></li>
+</ul>
+
+  </div>
+
+  
+    
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">MrJoshuaP&#39;s Adventures</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              MrJoshuaP&#39;s Adventures
+            
+            </li>
+          <li><a href="mailto:the@mrjoshuap.com">the@mrjoshuap.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/mrjoshuap" target="_blank"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">mrjoshuap</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://www.linkedin.com/in/mrjoshuap" target="_blank"><span class="icon icon--linkedin"><svg viewBox="0 0 512 512" width="16px" height="16px"><path d="M186.4 142.4c0 19-15.3 34.5-34.2 34.5 -18.9 0-34.2-15.4-34.2-34.5 0-19 15.3-34.5 34.2-34.5C171.1 107.9 186.4 123.4 186.4 142.4zM181.4 201.3h-57.8V388.1h57.8V201.3zM273.8 201.3h-55.4V388.1h55.4c0 0 0-69.3 0-98 0-26.3 12.1-41.9 35.2-41.9 21.3 0 31.5 15 31.5 41.9 0 26.9 0 98 0 98h57.5c0 0 0-68.2 0-118.3 0-50-28.3-74.2-68-74.2 -39.6 0-56.3 30.9-56.3 30.9v-25.2H273.8z"/></svg>
+</span><span class="username">mrjoshuap</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/MrJoshuaP" target="_blank"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">MrJoshuaP</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://account.xbox.com/en-US/Profile?gamerTag=MrJoshuaP" target="_blank"><span class="icon icon--xboxlive"><svg width="16px" height="16px" viewBox="0 0 24 24">
+<path d="M19.52,3.986C17.552,2.14,14.912,1,12,1C9.089,1,6.449,2.14,4.481,3.986c2.268,0.165,4.999,1.383,7.521,3.502
+  C14.521,5.369,17.252,4.151,19.52,3.986z"/>
+<path d="M19.626,4.083c-1.341,1.492-3.418,2.877-5.9,5.053c2.559,2.717,4.688,6.41,5.535,10.9c-2.521-4.204-5.008-7.11-7.259-9.304
+  c-2.255,2.193-4.741,5.1-7.261,9.304c0.846-4.49,2.977-8.184,5.533-10.9c-2.482-2.176-4.559-3.561-5.9-5.053
+  C2.298,6.084,1,8.888,1,11.999C1,18.073,5.926,23,12,23c6.076,0,11-4.927,11-11.001C23,8.887,21.703,6.083,19.626,4.083z"/>
+<path fill="#FFFFFF" d="M4.263,3.964c0.035,0.04,0.076,0.079,0.111,0.119C4.409,4.05,4.446,4.019,4.481,3.986
+  C4.409,3.98,4.334,3.967,4.263,3.964z"/>
+<path fill="#FFFFFF" d="M19.737,3.964c-0.07,0.003-0.146,0.017-0.218,0.022c0.035,0.032,0.072,0.063,0.106,0.097
+  C19.662,4.043,19.703,4.004,19.737,3.964z"/>
+</svg>
+</span><span class="username">MrJoshuaP</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Just a random technologist&#39;s ideas, thoughts and opinions peppered with a dash of enterprise open source and salted with bad humor.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
