@@ -52,4 +52,3 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-  - minima
