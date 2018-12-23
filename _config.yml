@@ -32,6 +32,11 @@ exclude:
   - Gemfile*
   - Makefile
   - shell
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 
 # Enable disqus comments
 disqus:
@@ -44,6 +49,6 @@ google_analytics: UA-85143801-1
 markdown: kramdown
 theme: minima
 
-gems:
+plugins:
+  - jekyll-feed
   - jekyll-sitemap
-  - minima
