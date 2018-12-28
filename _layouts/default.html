@@ -7,6 +7,21 @@
 
     {% include sidebar.html %}
 
+    <div class="wrapper">
+      <script>
+        (function() {
+          var cx = '007925208529848094199:1leyii2sq4k';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+      </script>
+      <gcse:search></gcse:search>
+    </div>
+
     <div class="content container">
       {{ content }}
     </div>
