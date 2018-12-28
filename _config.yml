@@ -58,10 +58,10 @@ pagination:
   title: ':title - page :num of :max'
   limit: 0
   sort_field: 'date'
-sort_reverse: false
+sort_reverse: true
 
 # Produces a cleaner folder structure when using categories
-permalink: /:year/:month/:title.html
+#permalink: /:year/:month/:title.html
 
 plugins:
   - jekyll-feed
