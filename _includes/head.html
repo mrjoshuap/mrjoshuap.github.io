@@ -6,13 +6,8 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>
-    {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }}
-    {% else %}
-      {{ page.title }} &middot; {{ site.title }}
-    {% endif %}
-  </title>
+  <!-- seo -->
+  {%- seo -%}
 
   <!-- CSS -->
   <link rel="stylesheet" href="/assets/poole.css">
@@ -43,16 +38,15 @@
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
 
-  <!-- seo -->
-  {%- seo -%}
-
   <!-- feed_meta -->
   {%- feed_meta -%}
 
+  <!-- share this chunk -->
   <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript" id="st_insights_js" src="http://w.sharethis.com/button/buttons.js?publisher=b26f9987-2d38-40fc-886a-079439a1d2c0"></script>
   <script type="text/javascript">stLight.options({publisher: "b26f9987-2d38-40fc-886a-079439a1d2c0", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
 
+  <!-- google ads -->
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({
@@ -61,6 +55,7 @@
     });
   </script>
 
+  <!-- google analytics -->
   {% if jekyll.environment == 'production' and site.google_analytics %}
   {% include google-analytics.html %}
   {% endif %}
