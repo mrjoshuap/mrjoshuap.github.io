@@ -24,6 +24,5 @@ gem "jekyll", "~> 3.8.5"
 
 gem "jekyll-feed"
 gem "jekyll-gist"
-gem "jekyll-paginate-v2"
 gem "jekyll-sitemap"
 gem "jekyll-seo-tag"
