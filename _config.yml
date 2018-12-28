@@ -49,13 +49,23 @@ google_analytics: UA-85143801-1
 markdown: kramdown
 highlighter: rouge
 
-paginate:         5
-# paginate_path:    '/page:num'
-                    # Or '/my-jekyll-site/page:num' if you want to move your index pages
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 3
+  offset: 2
+  permalink: '/posts/page/:num/'
+  title: ':title - page :num of :max'
+  limit: 0
+  sort_field: 'date'
+sort_reverse: true
+
+# Produces a cleaner folder structure when using categories
+permalink: /:year/:month/:title.html
 
 plugins:
   - jekyll-feed
   - jekyll-gist
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-seo-tag
   - jekyll-sitemap
