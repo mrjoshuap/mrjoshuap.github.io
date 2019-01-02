@@ -18,12 +18,11 @@ gem "jekyll"
 #gem "github-pages", group: :jekyll_plugins
 
 # If you have any plugins, put them here!
-# group :jekyll_plugins do
-#   gem "jekyll-github-metadata", "~> 1.0"
-# end
+group :jekyll_plugins do
+  gem "jekyll-feed"
+  gem "jekyll-gist"
+  gem "jekyll-paginate-v2"
+  gem "jekyll-sitemap"
+  gem "jekyll-seo-tag"
+end
 
-gem "jekyll-feed"
-gem "jekyll-gist"
-gem "jekyll-paginate-v2"
-gem "jekyll-sitemap"
-gem "jekyll-seo-tag"
