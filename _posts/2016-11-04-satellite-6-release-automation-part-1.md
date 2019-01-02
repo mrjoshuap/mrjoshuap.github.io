@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Satellite 6 Release Automation: Part 1"
+date:   2016-11-04 17:33:22 -0500
 categories: satellite
 ---
 
