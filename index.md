@@ -5,6 +5,12 @@ pagination:
   enabled: true
 ---
 
+<!-- Just some nice to have styles for the pager buttons -->
+<style>
+  ul.pager { text-align: center; list-style: none; }
+  ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px;}
+</style>
+
 <div class="posts">
   <div class="post">
     <h1 class="post-title">Posts</h1>
@@ -12,7 +18,7 @@ pagination:
       <li>
         <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
         <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title | escape }}</a>
         </h2>
       </li>
     {% endfor %}</ul>
